@@ -54,10 +54,7 @@ class Record:
             ttl = 3600 * 24
         else:
             ttl = 300
-        print('?????????????????????????????????')
-        print(*args)
-        print(type(*args))
-        print('?????????????????????????????????')
+       
         self.rr = RR(
             rname=self._rname,
             rtype=self._rtype,
@@ -86,9 +83,8 @@ class Resolver(ProxyResolver):
         i=1
         while i<=IOTnum2ask and Xcount<totalIOTnum:
             random_index = random.randint(0,totalIOTnum-1)
-            #print(random_index)
-            #print(line)
-            if ips[random_index]!= "X" : # so we woun't get the same ip twice
+          
+        if ips[random_index]!= "X" : # so we woun't get the same ip twice
                 i=i+1
                 my_resolver.nameservers = [ips[random_index].strip()] #defing the dns to be a random ip from the list of ips
                 print("ask " + ips[random_index].strip() + " which answers ")
@@ -113,7 +109,7 @@ class Resolver(ProxyResolver):
 
 
 
-                        print("\nthe count so far:")
+                        
                         for key,val in dict.items():
                             print(key , "=>" , val)
                         print("\n")
@@ -131,11 +127,7 @@ class Resolver(ProxyResolver):
         rname = str(request.questions[0].get_qname())[:-1]
         args = self.read_user_request(rname, path)
         args = (args,)
-        print("____________________________________________")
-        print(request)
-        print("____________________________________________")
-        print(type(request))
-        print("____________________________________________")
+       
         #assert d.opencode == 0,d.opencode
         #assert dnsqtypes[d[DNSQR].qtype] == 'A',d[DNSQR].qtype 
         rtype='A'
@@ -162,10 +154,7 @@ def handle_sig(signum, frame):
 
 if __name__ == "__main__":
 
-    #print("\nAsking for the ip of " + site )
-    #answer = read_user_request(site , path)
-    #print("\nThe most voted ip for "+site+" is: ")
-    #print(answer)
+   
 
     signal.signal(signal.SIGTERM, handle_sig)
     port = int(os.getenv('PORT', 53))
